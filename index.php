@@ -3,11 +3,16 @@ $pass = $_POST['pass'];
 $url = $_POST['url'];
 $name = $_POST['name'];
 $thumb = $_POST['thumb'];
-$files = glob('*.{gif}', GLOB_BRACE);
+
 $correctpass = "PICKYOURPASSWORD";
-if($url != '' && $name != '') {
-  file_put_contents($name.'.gif', file_get_contents($url));
+
+if($pass == $correctpass) {
+  if($url != '' && $name != '') {
+    file_put_contents($name.'.gif', file_get_contents($url));
+  }
+  $files = glob('*.{gif}', GLOB_BRACE);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -50,10 +55,13 @@ if($url != '' && $name != '') {
                 <? if($thumb == 'true'): ?>
                   <div class="col-sm-2" style="height:100px;"><a href="<? echo $file ?>"><img src="<? echo $file ?>" style="max-width:100%;max-height:100%;"/></a></div>
                 <? else: ?>
-                  <div class="col-sm-6"><a href="<? echo $file ?>"><? echo $file ?></a></div>
+                  <div class="col-sm-6"><a href="<? echo $file ?>"><? if($file == $name.".gif"): ?><strong><? endif ?><? echo $file ?><? if($file == $name.".gif"): ?></strong><? endif ?></a></div>
                 <? endif ?>
               <? endforeach ?>
             </div>
+          </div>
+          <div class="col-sm-12">
+            <a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://tylr.us/gifs/bookmarklet.js';})();">GIFVault Bookmarklet</a>
           </div>
         <? else: ?>
           <div class="col-sm-12">
