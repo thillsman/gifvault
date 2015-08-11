@@ -48,6 +48,10 @@ if($pass == $correctpass) {
               <input type="hidden" name="pass" value="<? echo $correctpass ?>">
               <input type="submit" name="submit" value="Toggle thumbnails"></input>
             </form><br />
+
+            Search<br />
+            <input type="text" name="search" value="" id="search"><br />
+            <button type="button" onclick="var query = document.getElementById('search').value.split(' ').join('+'); var url = 'http://images.google.com/search?hl=en&site=&tbm=isch&tbs=itp:animated&q='+query; window.location.href = url;">Find gifs</button>
           </div>
           <div class="col-sm-8">
             <div class="row">
